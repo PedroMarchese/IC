@@ -9,7 +9,6 @@ pep_results: pd.Series = None
 
 
 def read_files():
-    # return print(os.getcwd())
     base_path = 'micro_proteins\\data'
     
     global reference_proteome
@@ -38,5 +37,8 @@ def main():
     
     intersection_peps = separated_peps[separated_peps.isin(reference_proteome)].unique()
     print(intersection_peps.size)
+    
+    pd.DataFrame(intersection_peps, columns=['proteinIds']).to_csv('outputs/intersection_peps.csv', index=False, sep='\t')
+    
     
 main()    
