@@ -1,8 +1,9 @@
-import numpy as np
+"""
+    This script searches for the intersection between a reference proteome and mass spectometry experiments's results 
+"""
+
 import pandas as pd
 from Bio import SeqIO
-import os
-import sys
 
 base_path = 'micro_proteins\\data'
 
