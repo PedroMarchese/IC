@@ -23,13 +23,20 @@ def read_files():
             reference_proteome.append(record.id)
             
         reference_proteome = pd.Series(reference_proteome)
+        reference_proteome.name = 'proteinIds'
         
 
 def main():
     read_files()
-    print('Read files')
+    print('Reading files...')
     
     separated_peps = pep_results.str.split(';').explode()
-    print(separated_peps)
+    separated_peps = separated_peps.reset_index(drop=True)
+    separated_peps.name = 'proteinIds'
+    print(f'Length: {separated_peps.size}')
+    print('All proteins splitted!')
+    
+    intersection_peps = separated_peps[separated_peps.isin(reference_proteome)].unique()
+    print(intersection_peps.size)
     
 main()    
